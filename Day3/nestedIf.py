@@ -6,11 +6,19 @@ def main():
         print("You can ride the rollercoaster.")
         age=int(input("What is your age? "))
         if age>18:
-            print("You have to pay $12")
+            print("Adult ticket costs: $12")
+            bill = 12
         elif age >12 & age <18:
-            print("Your have to pay $7")
+            print("Teen ticket costs: $7")
+            bill = 7
         else:
-            print("You have to pay $5")
+            print("Kids ticket costs: $5")
+            bill = 5
+        check= input("Do you want to take photo?, Type 'Y' for Yes and 'N' for No ")
+        if check == "Y":
+            print(f"Please pay in total: {bill+3}")
+        else:
+            print(f"please pay in total: {bill}")
     else:
         print("Sorry you have to grow taller before you can ride.")
     return 0
