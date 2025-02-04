@@ -1,7 +1,65 @@
+
 import random
-word_list = ["aardvark", "baboon", "camel"]
 
 def Gneranate_Random_Word():
+    word_list = ["aardvark", "baboon", "camel"]
+    lives = 6
+    stages = ['''
+    +---+
+    |   |
+    O   |
+    /|\  |
+    / \  |
+        |
+    =========
+    ''', '''
+    +---+
+    |   |
+    O   |
+    /|\  |
+    /    |
+        |
+    =========
+    ''', '''
+    +---+
+    |   |
+    O   |
+    /|\  |
+        |
+        |
+    =========
+    ''', '''
+    +---+
+    |   |
+    O   |
+    /|   |
+        |
+        |
+    =========''', '''
+    +---+
+    |   |
+    O   |
+    |   |
+        |
+        |
+    =========
+    ''', '''
+    +---+
+    |   |
+    O   |
+        |
+        |
+        |
+    =========
+    ''', '''
+    +---+
+    |   |
+        |
+        |
+        |
+        |
+    =========
+    ''']
     word = random.choice(word_list)
     print(word)
     # store the word in list
@@ -16,27 +74,31 @@ def Gneranate_Random_Word():
     # print(guess_word)
     print("\n")
     
-    j = 0
-    while j <= len(word):
-        guess_letter = input("Enter a letter to guess the word: ")
-        matched = False
-        for i in range(len(word)):
-            if guess_letter == word[i]:
-                #print("matched" + guess_letter + " " + word[i])
-                matched = True
-                guess_word[i] = guess_letter
-                
+    correct_letters = []
+    game_over = False
+    while not game_over:
+        guess_letter = input("Enter a letter to guess the word: ").lower()
+        display = ""
+        for letter in word:
+            if guess_letter == letter:
+                display += letter
+                correct_letters.append(letter)
+            elif letter in correct_letters:
+                display += letter
             else:
-                #print("unmatched")
-                continue
-        # Join the word of list.
-        final_word = ""
-        print(final_word.join(guess_word))
+                 display +="_"
+        print(display)
         
-        if matched:
-            j += 1
-        else:
-            print("didn't match try again.")
+        if guess_letter not in word:
+            lives -= 1
+            if lives == 0:
+                game_over = True
+                print("Game over.")      
+        if "_" not in display:
+            game_over = True
+            print("You win!")
+        
+        print(stages[lives])
     return 0
 
 def main():
