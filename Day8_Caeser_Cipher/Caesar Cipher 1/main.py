@@ -11,12 +11,17 @@ def encrypt():
     shift = int(input("Type the shift number:\n"))
 # TODO-2: Inside the 'encrypt()' function, shift each letter of the 'original_text' forwards in the alphabet
 #  by the shift amount and print the encrypted text.
-    for letter in text:
-        position = alphabet.index(letter)
-        position += shift
-        print(alphabet[position], end="")
+    if shift > 26:
+        shift = round(shift/26) 
+        for letter in text:
 # TODO-4: What happens if you try to shift z forwards by 9? Can you fix the code?
-
+            if (alphabet.index(letter) + shift) >= 26:
+                position = (alphabet.index(letter) + shift) - 26
+                print(alphabet[position], end="")
+            else:
+                position = alphabet.index(letter)
+                position += shift
+                print(alphabet[position], end="")
 # TODO-3: Call the 'encrypt()' function and pass in the user inputs. You should be able to test the code and encrypt a
 #  message.
 
